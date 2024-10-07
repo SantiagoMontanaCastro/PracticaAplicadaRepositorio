@@ -1,0 +1,18 @@
+myenv/
+# Ignorar archivos de bytecode
+__pycache__/
+*.py[cod]
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar archivos de configuración de IDE
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar archivos de configuración de pruebas
+.coverage
+.tox/
+.nox/
+*.coverage.*
