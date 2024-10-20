@@ -1,0 +1,41 @@
+<!-- vav/templates/vav/catalogo.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Videos</title>
+</head>
+<body>
+    <h1>Catálogo de Videos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Título Original</th>
+                <th>Año</th>
+                <th>Duración (min)</th>
+                <th>Calificación</th>
+                <th>Clasificación</th>
+                <th>Precio</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for video in videos %}
+            <tr>
+                <td>{{ video.titulo_original }}</td>
+                <td>{{ video.ano }}</td>
+                <td>{{ video.duracion }}</td>
+                <td>{{ video.calificacion }}/10</td>
+                <td>{{ video.clasificacion }}</td>
+                <td>{{ video.precio }}</td>  <!-- Si tienes precio en el modelo -->
+                <td>
+                    <a href="{% url 'alquilar_venta' video.id %}">Alquilar/Vender</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

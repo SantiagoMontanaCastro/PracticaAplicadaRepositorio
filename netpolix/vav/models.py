@@ -1,16 +1,43 @@
 from django.db import models
-from crm.models import Cliente
-from sic.models import Video
+from crm.models import Perfil
+
 
 # Create your models here.
 
+class Video(models.Model):
+    ISAN = models.CharField(max_length=50, unique=True)
+    titulo_original = models.CharField(max_length=255)
+    ano = models.IntegerField()
+    duracion = models.IntegerField()  # en minutos
+    calificacion = models.FloatField(default=0.0)
+    clasificacion = models.CharField(max_length=10, choices=[('G', 'G'), ('PG', 'PG'), ('PG-13', 'PG-13'), ('R', 'R'), ('NC-17', 'NC-17')])
+    idioma_original = models.CharField(max_length=50)
+    subtitulos = models.CharField(max_length=50, blank=True)
+    doblajes = models.CharField(max_length=50, blank=True)
+    precio_alquiler = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+    precio_venta = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return self.titulo_original
+
+
 class AlquilerVenta(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Perfil, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
-    tipo = models.CharField(max_length=10, choices=[('alquiler', 'Alquiler'), ('venta', 'Venta')])
+    tipo = models.CharField(max_length=10, choices=[
+        ('alquiler', 'Alquiler'), 
+        ('venta', 'Venta')
+    ])
     fecha_transaccion = models.DateTimeField(auto_now_add=True)
-    puntos_ganados = models.IntegerField()
-    
+    puntos_ganados = models.PositiveIntegerField()  # Cambiado a PositiveIntegerField
+
     def __str__(self):
         return f"{self.cliente} - {self.video.titulo_original} ({self.tipo})"
+
+
+def obtener_info_catalogo(self):
+        return (f"{self.video.titulo_original} ({self.video.ano}) - {self.video.clasificacion} - "
+                f"{self.video.duracion} min - {self.video.calificacion}/10 - "
+                f"Precio: ${self.precio}")
+
 
