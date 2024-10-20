@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
+from vav import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('crm/', include('crm.urls')),  # Incluye las URLs de la aplicación crm
-     path('vav/', include('vav.urls')),  # Incluye las URLs de la aplicación VAV
+    path('vav/', include('vav.urls')), 
+    path('', views.pagina_inicio), 
 ]
