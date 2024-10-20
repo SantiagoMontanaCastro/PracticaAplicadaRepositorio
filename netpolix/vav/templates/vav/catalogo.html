@@ -17,7 +17,8 @@
                 <th>Duración (min)</th>
                 <th>Calificación</th>
                 <th>Clasificación</th>
-                <th>Precio</th>
+                <th>Precio venta</th>
+                <th>Precio alquiler</th>
                 <th>Acción</th>
             </tr>
         </thead>
@@ -29,9 +30,10 @@
                 <td>{{ video.duracion }}</td>
                 <td>{{ video.calificacion }}/10</td>
                 <td>{{ video.clasificacion }}</td>
-                <td>{{ video.precio }}</td>  <!-- Si tienes precio en el modelo -->
+                <td>{{ video.precio_venta }}</td>
+                <td>{{ video.precio_alquiler }}</td>  
                 <td>
-                    <a href="{% url 'alquilar_venta' video.id %}">Alquilar/Vender</a>
+                    <a href="{% url 'alquilar_venta' video.id %}">Alquilar/comprar</a>
                 </td>
             </tr>
             {% endfor %}

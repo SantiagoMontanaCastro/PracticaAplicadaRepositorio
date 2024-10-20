@@ -4,14 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alquilar/Vender - {{ video.titulo_original }}</title>
+
+    <style>
+        /* Estilos para los botones */
+        .btn-alquilar {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-comprar {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Opcional: Cambiar color cuando el botón es presionado */
+        .btn-alquilar:hover {
+            background-color: darkblue;
+        }
+
+        .btn-comprar:hover {
+            background-color: darkgreen;
+        }
+    </style>
 </head>
 <body>
-    <h1>Alquilar/Vender - {{ video.titulo_original }}</h1>
+    <h1>Alquilar/comprar - {{ video.titulo_original }}</h1>
     <p>Año: {{ video.ano }}</p>
     <p>Duración: {{ video.duracion }} min</p>
     <p>Calificación: {{ video.calificacion }}/10</p>
     <p>Clasificación: {{ video.clasificacion }}</p>
-    <p>Precio: {{ video.precio }}</p>
-    <!-- Aquí puedes agregar más detalles o formularios para alquilar/vender -->
+    <p>Precio de alquiler: {{ video.precio_alquiler }}</p>
+    <p>Precio de venta: {{ video.precio_venta }}</p>
+
+    
+        {% csrf_token %}
+        <button type="submit" class="btn-alquilar">Alquilar</button>
+    </form>
+
+    
+    
+        {% csrf_token %}
+        <button type="submit" class="btn-comprar">Comprar</button>
+    </form>
+
+    
 </body>
 </html>
