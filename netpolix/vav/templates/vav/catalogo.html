@@ -1,17 +1,31 @@
-<!-- vav/templates/vav/catalogo.html -->
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Videos</title>
+    <style>
+        .search-container {
+            float: right;
+            margin: 20px;
+        }
+    </style>
 </head>
-
 <body>
-    {% csrf_token %}
     <h1>Catálogo de Videos</h1>
+
+    <div class="search-container">
+        <form method="GET">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo_original" placeholder="Buscar por título" />
+            <label for="ano">Año:</label>
+            <input type="number" name="ano" placeholder="Año" />
+            <label for="idioma">Idioma:</label>
+            <input type="text" name="idioma" placeholder="Idioma" />
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -43,5 +57,4 @@
         </tbody>
     </table>
 </body>
-
 </html>

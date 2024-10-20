@@ -16,7 +16,7 @@ def registro_cliente(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)  # Autenticar al usuario después de registrarse
-            return redirect('home')  # Redirige al home después del registro
+            return redirect('/vav/catalogo')  # Redirige al home después del registro
     else:
         form = RegistroClienteForm()
     return render(request, 'crm/registro.html', {'form': form})
