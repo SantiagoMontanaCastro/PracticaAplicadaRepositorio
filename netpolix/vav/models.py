@@ -1,5 +1,7 @@
 from django.db import models
 from crm.models import Perfil
+from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -39,5 +41,22 @@ def obtener_info_catalogo(self):
         return (f"{self.video.titulo_original} ({self.video.ano}) - {self.video.clasificacion} - "
                 f"{self.video.duracion} min - {self.video.calificacion}/10 - "
                 f"Precio: ${self.precio}")
+        
+
+
+class Carrito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    TIPO_CHOICES = [
+        ('alquiler', 'Alquiler'),
+        ('venta', 'Venta'),
+    ]
+    tipo = models.CharField(max_length=10, choices=TIPO_CHOICES)
+    cantidad = models.PositiveIntegerField(default=1)  # En caso de que permitas múltiples compras
+    fecha_agregado = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.video.titulo_original} - {self.tipo}"
+        
 
 

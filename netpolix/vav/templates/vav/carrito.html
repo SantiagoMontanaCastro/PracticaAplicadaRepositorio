@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito</title>
+
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li.success {
+            color: green;
+        }
+
+        li.warning {
+            color: orange;
+        }
+
+        li.error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mi Carrito</h1>
+
+    
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in carrito_items %}
+            <tr>
+                <td>{{ item.video.titulo_original }}</td>
+                <td>{{ item.tipo }}</td>
+                <td>
+                    {% if item.tipo == 'alquiler' %}
+                        {{ item.video.precio_alquiler }}
+                    {% else %}
+                        {{ item.video.precio_venta }}
+                    {% endif %}
+                </td>
+                <td>{{ item.cantidad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Total: {{ total }}</h3>
+</body>
+</html>
