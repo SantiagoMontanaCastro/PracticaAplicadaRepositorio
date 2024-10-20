@@ -23,3 +23,8 @@ def alquilar_venta(request, video_id):
     # Por ejemplo, puedes crear un nuevo objeto AlquilerVenta si es necesario
 
     return render(request, 'vav/alquilar_venta.html', {'video': video})
+
+
+def pagina_inicio(request):
+
+    return render(request,'vav/pagina_inicio.html')

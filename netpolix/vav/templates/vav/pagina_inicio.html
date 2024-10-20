@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netpolix</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        <img src="{% static 'images/Logo_Netpolix.png' %}" alt="Icono de Netpolix" class="icono">
+        <div class="button-container">
+            <li class="nav-item">
+                <a href="/crm/login/" class="nav-link ingresar-btn">Ingresar</a>
+            </li>
+            <li class="nav-item">
+                <a href="/crm/registro/" class="nav-link registrarse-btn">Registrarse</a>
+            </li>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Bienvenido a Netpolix</h2>
+        <div class="button-container">
+        </div>
+    </div>
+</body>
+
+</html>
