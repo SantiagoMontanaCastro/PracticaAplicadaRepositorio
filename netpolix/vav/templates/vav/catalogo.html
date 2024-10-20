@@ -2,12 +2,15 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Videos</title>
 </head>
+
 <body>
+    {% csrf_token %}
     <h1>Catálogo de Videos</h1>
     <table>
         <thead>
@@ -31,7 +34,7 @@
                 <td>{{ video.calificacion }}/10</td>
                 <td>{{ video.clasificacion }}</td>
                 <td>{{ video.precio_venta }}</td>
-                <td>{{ video.precio_alquiler }}</td>  
+                <td>{{ video.precio_alquiler }}</td>
                 <td>
                     <a href="{% url 'alquilar_venta' video.id %}">Alquilar/comprar</a>
                 </td>
@@ -40,4 +43,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
