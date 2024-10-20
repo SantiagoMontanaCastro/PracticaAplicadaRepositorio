@@ -35,11 +35,11 @@ def alquilar_venta(request, video_id):
     return render(request, 'vav/alquilar_venta.html', {'video': video})
 
 
-<<<<<<< HEAD
+
 def pagina_inicio(request):
 
     return render(request,'vav/pagina_inicio.html')
-=======
+
 def agregar_al_carrito(request, video_id, tipo):
     video = get_object_or_404(Video, id=video_id)
 
@@ -60,4 +60,4 @@ def ver_carrito(request):
     carrito_items = Carrito.objects.filter(usuario=request.user)
     total = sum(item.video.precio_alquiler if item.tipo == 'alquiler' else item.video.precio_venta for item in carrito_items)
     return render(request, 'vav/carrito.html', {'carrito_items': carrito_items, 'total': total})
->>>>>>> 1e3bb5fd193b468f8444de83f1f2f2a8de1e55a0
+
