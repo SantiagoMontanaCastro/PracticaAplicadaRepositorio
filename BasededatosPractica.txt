@@ -1,0 +1,121 @@
+CREATE DATABASE IF NOT EXISTS sistema_alquileres;
+USE sistema_alquileres;
+
+-- Crear tabla Cliente
+CREATE TABLE IF NOT EXISTS Cliente (
+    ID_Cliente INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100),
+    Apellido VARCHAR(100),
+    Edad INT,
+    CorreoElectronico VARCHAR(255)
+);
+
+-- Crear tabla Administrador
+CREATE TABLE IF NOT EXISTS Administrador (
+    ID_Administrador INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100),
+    Apellido VARCHAR(100),
+    CorreoElectronico VARCHAR(255)
+);
+
+-- Crear tabla Registro
+CREATE TABLE IF NOT EXISTS Registro (
+    ID_Registro INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Administrador INT,
+    FOREIGN KEY (ID_Administrador) REFERENCES Administrador(ID_Administrador)
+);
+
+-- Crear tabla Categoria
+CREATE TABLE IF NOT EXISTS Categoria (
+    ID_Categoria INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100)
+);
+
+-- Crear tabla Series
+CREATE TABLE IF NOT EXISTS Series (
+    ID_Series INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100),
+    ID_Categoria INT,
+    Idiomas VARCHAR(255),
+    Puntuacion DECIMAL(3, 2),
+    Clasificacion VARCHAR(10),
+    CantidadCapitulos INT,
+    Descripcion TEXT,
+    ID_Coleccion INT,
+    ID_registro INT,
+    FOREIGN KEY (ID_Categoria) REFERENCES Categoria(ID_Categoria)
+);
+
+-- Crear tabla Pelicula
+CREATE TABLE IF NOT EXISTS Pelicula (
+    ID_Pelicula INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100),
+    ID_Categoria INT,
+    Idiomas VARCHAR(255),
+    Puntuacion DECIMAL(3, 2),
+    Clasificacion VARCHAR(10),
+    Descripcion TEXT,
+    ID_Coleccion INT,
+    ID_registroPelicula INT,
+    FOREIGN KEY (ID_Categoria) REFERENCES Categoria(ID_Categoria)
+);
+
+-- Crear tabla Coleccion
+CREATE TABLE IF NOT EXISTS Coleccion (
+    ID_Pelicula INT,
+    ID_Series INT,
+    PRIMARY KEY (ID_Pelicula, ID_Series),
+    FOREIGN KEY (ID_Pelicula) REFERENCES Pelicula(ID_Pelicula),
+    FOREIGN KEY (ID_Series) REFERENCES Series(ID_Series)
+);
+
+-- Crear tabla Alquiler
+CREATE TABLE IF NOT EXISTS Alquiler (
+    ID_Alquiler INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Pelicula INT,
+    FechaAlquiler DATE,
+    FechaExpiracion DATE,
+    FOREIGN KEY (ID_Pelicula) REFERENCES Pelicula(ID_Pelicula)
+);
+
+-- Crear tabla Pago
+CREATE TABLE IF NOT EXISTS Pago (
+    ID_Pago INT PRIMARY KEY AUTO_INCREMENT,
+    FechaPago DATE,
+    ID_Factura INT
+);
+
+-- Crear tabla Factura
+CREATE TABLE IF NOT EXISTS Factura (
+    ID_Factura INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Cliente INT,
+    ID_Compra INT,
+    ID_Alquiler INT,
+    FechaEmision DATE,
+    TotalFactura DECIMAL(10, 2),
+    Descripcion TEXT,
+    ID_Pago INT,
+    FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),
+    FOREIGN KEY (ID_Alquiler) REFERENCES Alquiler(ID_Alquiler),
+    FOREIGN KEY (ID_Pago) REFERENCES Pago(ID_Pago)
+);
+
+-- Crear tabla Compra
+CREATE TABLE IF NOT EXISTS Compra (
+    ID_Compra INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Pelicula INT,
+    FOREIGN KEY (ID_Pelicula) REFERENCES Pelicula(ID_Pelicula)
+);
+
+-- Crear tabla HistorialCalificaciones
+CREATE TABLE IF NOT EXISTS HistorialCalificaciones (
+    ID_Historial INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Cliente INT,
+    ID_Pelicula INT,
+    Comentario TEXT,
+    Calificacion DECIMAL(3, 2),
+    ID_Series INT,
+    FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),
+    FOREIGN KEY (ID_Pelicula) REFERENCES Pelicula(ID_Pelicula),
+    FOREIGN KEY (ID_Series) REFERENCES Series(ID_Series)
+);
