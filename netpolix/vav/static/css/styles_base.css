@@ -47,3 +47,44 @@ body {
 .nav-link:hover {
     background-color: #00000000;
 }
+
+.content {
+    text-align: center;
+    padding: 50px;
+}
+
+h2 {
+    color: #ffa903;
+    font-size: 36px;
+}
+
+p {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.btn {
+    background-color: #0D3FA9;
+    color: #FFFFFF;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #ffa903;
+    color: #1a1a1a;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0D3FA9;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

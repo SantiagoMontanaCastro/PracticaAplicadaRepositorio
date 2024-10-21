@@ -1,0 +1,111 @@
+body {
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #FF8800;
+    margin-bottom: 30px;
+}
+
+.logout-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    background-color: #0D3FA9;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: #FF8800;
+    color: #1a1a1a;
+}
+
+.icono {
+    height: 40px;
+    margin-left: 150px;
+}
+
+.search-container {
+    background-color: #0D3FA9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.search-container label {
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.search-container input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-btn {
+    background-color: #FF8800;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #1a1a1a;
+    color: #FF8800;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    padding: 15px;
+    border: 1px solid #FFFFFF;
+    text-align: left;
+}
+
+thead {
+    background-color: #0D3FA9;
+    color: #FFFFFF;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #2a2a2a;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #333333;
+}
+
+.action-btn {
+    background-color: #FF8800;
+    color: #1a1a1a;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.action-btn:hover {
+    background-color: #0D3FA9;
+    color: #FFFFFF;
+}
