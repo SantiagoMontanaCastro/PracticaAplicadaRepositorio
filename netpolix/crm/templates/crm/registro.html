@@ -19,29 +19,60 @@
         <form method="POST" class="registro-form">
             {% csrf_token %}
 
-            {% if error %}
-            <div class="error">{{ error }}</div>
+            {% if form.non_field_errors %}
+            <div class="error">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
             {% endif %}
 
             <div class="form-group">
-                <label for="username">Nombre de usuario</label>
+                <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
                 {{ form.username }}
+                {% if form.username.errors %}
+                <div class="error">{{ form.username.errors }}</div>
+                {% endif %}
             </div>
+
             <div class="form-group">
-                <label for="password1">Contraseña</label>
-                {{ form.password1 }}
-            </div>
-            <div class="form-group">
-                <label for="password2">Confirma tu contraseña</label>
-                {{ form.password2 }}
-            </div>
-            <div class="form-group">
-                <label for="email">Correo electrónico</label>
+                <label for="{{ form.email.id_for_label }}">Correo electrónico</label>
                 {{ form.email }}
+                {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
+                {% endif %}
             </div>
+
             <div class="form-group">
-                <label for="cedula">ID</label>
+                <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <div class="error">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Confirma tu contraseña</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <div class="error">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.cedula.id_for_label }}">ID</label>
                 {{ form.cedula }}
+                {% if form.cedula.errors %}
+                <div class="error">{{ form.cedula.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.fecha_ingreso.id_for_label }}">Fecha de ingreso</label>
+                {{ form.fecha_ingreso }}
+                {% if form.fecha_ingreso.errors %}
+                <div class="error">{{ form.fecha_ingreso.errors }}</div>
+                {% endif %}
             </div>
 
             <button type="submit" class="btn-custom" id="Registrarse">
