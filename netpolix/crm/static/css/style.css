@@ -41,7 +41,7 @@ body {
     background-color: #00000000;
 }
 
-/* Contenedor del formulario */
+/* Login formulario */
 .login-container {
     background-color: rgba(0, 0, 2, 0.5);
 
@@ -54,9 +54,6 @@ body {
     color: #FFFFFF;
 }
 
-
-
-/* Título del formulario */
 .login-title {
     text-align: left;
     color: #FFA903;
@@ -64,7 +61,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Estilos del formulario */
 .login-form {
     display: flex;
     flex-direction: column;
@@ -95,12 +91,46 @@ body {
     margin-bottom: 20px;
 }
 
-.btn-custom:hover {
-    background-color: #ffbf40;
-}
 
 #Registrarse {
     color: #FFFFFF;
-    font-style: bold;
+}
 
+
+/* Registro formulario */
+.registro-container {
+    background-color: rgba(0, 0, 2, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+    width: 300px;
+    height: auto;
+    margin: 50px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+}
+
+.registro-title {
+    text-align: left;
+    color: #FFA903;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.regitro-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registro-form input {
+    width: 95%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: black;
+
+}
+
+.registro-form input::placeholder {
+    color: #FFFFFF;
 }
