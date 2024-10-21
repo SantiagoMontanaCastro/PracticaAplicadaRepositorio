@@ -9,24 +9,17 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #00000000;
+    background-color: #16005200;
 }
 
 .icono {
-    height: 50px;
-    margin-left: 50px;
+    height: 40px;
+    margin-left: 150px;
 }
 
 .container {
     text-align: center;
     margin: 50px 0;
-}
-
-.button-container {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
 }
 
 .nav-item {
@@ -39,7 +32,7 @@ body {
     text-decoration: none;
     color: white;
     background-color: #FF8800;
-    border-radius: 5px;
+    border-radius: 0px;
     transition: background-color 0.3s;
     font-size: 20px;
 }
@@ -50,7 +43,8 @@ body {
 
 /* Contenedor del formulario */
 .login-container {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 2, 0.5);
+
     padding: 40px;
     border-radius: 10px;
     width: 300px;
@@ -58,15 +52,14 @@ body {
     margin: 50px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: #FFFFFF;
-
 }
+
 
 
 /* Título del formulario */
 .login-title {
     text-align: left;
     color: #FFA903;
-    /* Color destacado para el título */
     font-size: 30px;
     margin-bottom: 20px;
 }
@@ -83,9 +76,7 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
-    border: 1px solid #FFA903;
-    background-color: transparent;
-    color: white;
+    color: black;
 
 }
 
@@ -93,10 +84,10 @@ body {
     color: #FFFFFF;
 }
 
-/* Botón de envío */
 .btn-custom {
     background-color: #FFA903;
-    color: #0D3FA9;
+    color: black;
+    font-style: bold;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -106,4 +97,10 @@ body {
 
 .btn-custom:hover {
     background-color: #ffbf40;
+}
+
+#Registrarse {
+    color: #FFFFFF;
+    font-style: bold;
+
 }
