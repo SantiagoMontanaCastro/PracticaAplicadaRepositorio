@@ -9,10 +9,31 @@
             float: right;
             margin: 20px;
         }
+        .logout-container {
+            float: right;
+            margin: 20px;
+            font-size: 16px; /* Ajusta el tamaño de la fuente si es necesario */
+        }
+        .logout-container a {
+            padding: 8px 12px;
+            background-color: #f44336; /* Color de fondo */
+            color: white; /* Color del texto */
+            text-decoration: none; /* Sin subrayado */
+            border-radius: 4px; /* Bordes redondeados */
+        }
+        .logout-container a:hover {
+            background-color: #d32f2f; /* Color de fondo al pasar el mouse */
+        }
     </style>
 </head>
 <body>
     <h1>Catálogo de Videos</h1>
+
+    <div class="logout-container">
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Cerrar sesión</a>
+        {% endif %}
+    </div>
 
     <div class="search-container">
         <form method="GET">
@@ -21,7 +42,7 @@
             <label for="ano">Año:</label>
             <input type="number" name="ano" placeholder="Año" />
             <label for="idioma">Idioma:</label>
-            <input type="text" name="idioma" placeholder="Idioma" />
+            <input type="text" name="idioma_original" placeholder="Idioma" />
             <button type="submit">Buscar</button>
         </form>
     </div>
