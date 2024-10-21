@@ -2,25 +2,38 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Video, Carrito 
 from .models import AlquilerVenta
 from django.contrib import messages  
+from .forms import VideoSearchForm 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 
 # Create your views here.
 
 
-
+@login_required
 def catalogo_videos(request):
+    
+    form = VideoSearchForm(request.GET or None)
     # Obtener todos los videos de la base de datos
     videos = Video.objects.all()
+
+    if form.is_valid():
+        if form.cleaned_data['ISAN']:
+            videos = videos.filter(ISAN=form.cleaned_data['ISAN'])
+        if form.cleaned_data['titulo_original']:
+            videos = videos.filter(titulo_original__icontains=form.cleaned_data['titulo_original'])
+        if form.cleaned_data['ano']:
+            videos = videos.filter(ano=form.cleaned_data['ano'])
+        if form.cleaned_data['idioma_original']:
+            videos = videos.filter(idioma_original__icontains=form.cleaned_data['idioma_original'])
     
     # Renderizar la plantilla y pasar la lista de videos
     return render(request, 'vav/catalogo.html', {'videos': videos})
 
-
+@login_required
 def alquilar_venta(request, video_id):
     # Obtiene el video correspondiente por su ID
     video = get_object_or_404(Video, id=video_id)
-
-    # Aquí puedes agregar la lógica para manejar el alquiler o la venta
-    # Por ejemplo, puedes crear un nuevo objeto AlquilerVenta si es necesario
 
     return render(request, 'vav/alquilar_venta.html', {'video': video})
 
@@ -30,6 +43,7 @@ def pagina_inicio(request):
 
     return render(request,'vav/pagina_inicio.html')
 
+@login_required
 def agregar_al_carrito(request, video_id, tipo):
     video = get_object_or_404(Video, id=video_id)
 
@@ -46,8 +60,13 @@ def agregar_al_carrito(request, video_id, tipo):
 
     return redirect('ver_carrito')  # Redirigir a la página de carrito o donde desees
 
+@login_required
 def ver_carrito(request):
     carrito_items = Carrito.objects.filter(usuario=request.user)
     total = sum(item.video.precio_alquiler if item.tipo == 'alquiler' else item.video.precio_venta for item in carrito_items)
     return render(request, 'vav/carrito.html', {'carrito_items': carrito_items, 'total': total})
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')  # Cambia 'home' por la URL a la que desees redirigir después de cerrar sesión
