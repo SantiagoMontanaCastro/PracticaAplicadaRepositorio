@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,16 +6,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 
 <body>
 
-    <h2>Iniciar sesión</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Iniciar sesión</button>
-    </form>
+    <header class="header">
+        <img src="{% static 'images/Logo_Netpolix.png' %}" alt="Icono de Netpolix" class="icono" height="50px">
+        <div class="button-container">
+            <li class="nav-item">
+                <a href="/crm/login/" class="nav-link ingresar-btn">Ingresar</a>
+            </li>
+            <li class="nav-item">
+                <a href="/crm/registro/" class="nav-link registrarse-btn">Registrarse</a>
+            </li>
+        </div>
+    </header>
+
+
+    <div class="login-container">
+        <h1 class="login-title">Iniciar sesión</h1>
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="btn-custom">Iniciar sesión</button>
+            <div id="div_registrarse">
+                <a href="/crm/registro/" class="btn-register" id="Registrarse">Registrarse</a>
+            </div>
+        </form>
+    </div>
 
 
 </body>
