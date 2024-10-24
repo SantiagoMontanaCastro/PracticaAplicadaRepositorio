@@ -1,5 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,10 +35,29 @@
         .btn-comprar:hover {
             background-color: darkgreen;
         }
+
+        .icono {
+            height: 40px;
+            margin-left: 150px;
+        }
     </style>
 </head>
+
 <body>
+
+    <header class="header">
+        <img src="{% static 'images/Logo_Netpolix.png' %}" alt="Icono de Netpolix" class="icono">
+    </header>
+
     <h1>Alquilar/comprar - {{ video.titulo_original }}</h1>
+    <td>
+        {% if video.poster %}
+        <img src="{{ video.poster.url }}" alt="Portada de {{ video.titulo_original }}"
+            style="width:100px; height:auto;">
+        {% else %}
+        <img src="{% static 'images/default_image.png' %}" alt="Imagen por defecto" style="width:100px; height:auto;">
+        {% endif %}
+    </td>
     <p>Año: {{ video.ano }}</p>
     <p>Duración: {{ video.duracion }} min</p>
     <p>Calificación: {{ video.calificacion }}/10</p>
@@ -44,17 +65,19 @@
     <p>Precio de alquiler: {{ video.precio_alquiler }}</p>
     <p>Precio de venta: {{ video.precio_venta }}</p>
 
-    <form action="{% url 'agregar_al_carrito' video.id 'alquiler' %}" method="post" style="display: inline-block; margin-right: 10px;">
+    <form action="{% url 'agregar_al_carrito' video.id 'alquiler' %}" method="post"
+        style="display: inline-block; margin-right: 10px;">
         {% csrf_token %}
         <button type="submit" class="btn-alquilar">Alquilar</button>
     </form>
 
-    
+
     <form action="{% url 'agregar_al_carrito' video.id 'venta' %}" method="post" style="display: inline-block;">
         {% csrf_token %}
         <button type="submit" class="btn-comprar">Comprar</button>
     </form>
 
-    
+
 </body>
+
 </html>

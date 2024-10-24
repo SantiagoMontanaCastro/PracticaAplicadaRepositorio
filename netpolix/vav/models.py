@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+from django.db import models
+ 
 class Video(models.Model):
     ISAN = models.CharField(max_length=50, unique=True)
     titulo_original = models.CharField(max_length=255)
@@ -18,7 +20,8 @@ class Video(models.Model):
     doblajes = models.CharField(max_length=50, blank=True)
     precio_alquiler = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     precio_venta = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
-
+    poster = models.ImageField(upload_to='posters/') 
+ 
     def __str__(self):
         return self.titulo_original
 

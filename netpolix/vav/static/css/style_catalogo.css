@@ -12,6 +12,11 @@ h1 {
     margin-bottom: 30px;
 }
 
+.icono {
+    height: 40px;
+    margin-left: 150px;
+}
+
 .logout-container {
     text-align: right;
     margin-bottom: 20px;
@@ -31,10 +36,7 @@ h1 {
     color: #1a1a1a;
 }
 
-.icono {
-    height: 40px;
-    margin-left: 150px;
-}
+
 
 .search-container {
     background-color: #0D3FA9;
