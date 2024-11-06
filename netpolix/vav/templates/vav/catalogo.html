@@ -35,52 +35,39 @@
         </form>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Portada</th> <!-- Nueva columna para la portada -->
-                <th>Título Original</th>
-                <th>Año</th>
-                <th>Duración (min)</th>
-                <th>Calificación</th>
-                <th>Clasificación</th>
-                <th>Idioma Original</th>
-                <th>Subtítulos</th>
-                <th>Doblajes</th>
-                <th>Precio Alquiler</th>
-                <th>Precio Venta</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for video in videos %}
-            <tr>
-                <td>
-                    {% if video.poster %}
-                    <img src="{{ video.poster.url }}" alt="Portada de {{ video.titulo_original }}"
-                        style="width:100px; height:auto;">
-                    {% else %}
-                    <img src="{% static 'images/default_image.png' %}" alt="Imagen por defecto"
-                        style="width:100px; height:auto;">
-                    {% endif %}
-                </td>
-                <td>{{ video.titulo_original }}</td>
-                <td>{{ video.ano }}</td>
-                <td>{{ video.duracion }}</td>
-                <td>{{ video.calificacion }}/10</td>
-                <td>{{ video.clasificacion }}</td>
-                <td>{{ video.idioma_original }}</td>
-                <td>{{ video.subtitulos }}</td>
-                <td>{{ video.doblajes }}</td>
-                <td>{{ video.precio_alquiler }}</td>
-                <td>{{ video.precio_venta }}</td>
-                <td>
-                    <a href="{% url 'alquilar_venta' video.id %}">Alquilar/comprar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="catalogo">
+        {% for video in videos %}
+        <div class="tarjeta-pelicula" data-pelicula-id="{{ video.id }}" data-url="{% url 'alquilar_venta' video.id %}">
+            <div class="poster-container">
+                {% if video.poster %}
+                <img src="{{ video.poster.url }}" alt="Portada de {{ video.titulo_original }}" class="poster">
+                {% else %}
+                <img src="{% static 'images/default_image.png' %}" alt="Imagen por defecto" class="poster">
+                {% endif %}
+            </div>
+            <div class="info-pelicula">
+                <h3>{{ video.titulo_original }}</h3>
+                <span>Año: {{ video.ano }}</span>
+                <span>Idioma: {{ video.idioma_original }}</span>
+                <span>Alquiler: ${{ video.precio_alquiler }}</span>
+                <span>Venta: ${{ video.precio_venta }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.querySelectorAll('.tarjeta-pelicula').forEach(tarjeta => {
+            tarjeta.addEventListener('click', function (e) {
+
+                let url = tarjeta.getAttribute('data-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
