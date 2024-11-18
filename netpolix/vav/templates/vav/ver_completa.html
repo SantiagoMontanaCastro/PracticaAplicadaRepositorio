@@ -1,0 +1,13 @@
+<!-- watch_video.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ video.titulo_original }}</h2>
+  <div class="video-player">
+    {% if full_movie_url %}
+      <iframe width="560" height="315" src="{{ full_movie_url }}" frameborder="0" allowfullscreen></iframe>
+    {% else %}
+      <p>El video no está disponible.</p>
+    {% endif %}
+  </div>
+{% endblock %}

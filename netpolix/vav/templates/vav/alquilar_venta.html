@@ -51,12 +51,10 @@
 
     <h1>Alquilar/comprar - {{ video.titulo_original }}</h1>
     <td>
-        {% if video.poster %}
-        <img src="{{ video.poster.url }}" alt="Portada de {{ video.titulo_original }}"
-            style="width:100px; height:auto;">
-        {% else %}
-        <img src="{% static 'images/default_image.png' %}" alt="Imagen por defecto" style="width:100px; height:auto;">
+        {% if video.trailer_url %}
+        <iframe width="560" height="315" src="{{ video.trailer_url }}" frameborder="0" allowfullscreen></iframe>
         {% endif %}
+
     </td>
     <p>Año: {{ video.ano }}</p>
     <p>Duración: {{ video.duracion }} min</p>

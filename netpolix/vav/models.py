@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-
-from django.db import models
  
 class Video(models.Model):
     ISAN = models.CharField(max_length=50, unique=True)
@@ -21,6 +19,8 @@ class Video(models.Model):
     precio_alquiler = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     precio_venta = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     poster = models.ImageField(upload_to='posters/') 
+    trailer_url = models.URLField(blank=True, null=True)
+    full_movie_url = models.URLField(blank=True, null=True)  # URL de la película completa
  
     def __str__(self):
         return self.titulo_original
@@ -60,6 +60,20 @@ class Carrito(models.Model):
     
     def __str__(self):
         return f"{self.video.titulo_original} - {self.tipo}"
+    
+    from django.contrib.auth.models import User
+from django.db import models
+
+class Purchase(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    purchase_type = models.CharField(max_length=10, choices=[('alquiler', 'Alquiler'), ('venta', 'Venta')])
+    payment_status = models.CharField(max_length=15, choices=[('pendiente', 'Pendiente'), ('completado', 'Completado')])
+    purchase_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.video.titulo_original} ({self.purchase_type})"
+
         
 
 
