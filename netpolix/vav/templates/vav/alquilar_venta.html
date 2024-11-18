@@ -6,41 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alquilar/Vender - {{ video.titulo_original }}</title>
+    <link rel="stylesheet" href="{% static 'css/alquilar_comprar.css' %}">
 
-    <style>
-        /* Estilos para los botones */
-        .btn-alquilar {
-            background-color: blue;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-comprar {
-            background-color: green;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Opcional: Cambiar color cuando el botón es presionado */
-        .btn-alquilar:hover {
-            background-color: darkblue;
-        }
-
-        .btn-comprar:hover {
-            background-color: darkgreen;
-        }
-
-        .icono {
-            height: 40px;
-            margin-left: 150px;
-        }
-    </style>
 </head>
 
 <body>
@@ -49,33 +16,40 @@
         <img src="{% static 'images/Logo_Netpolix.png' %}" alt="Icono de Netpolix" class="icono">
     </header>
 
-    <h1>Alquilar/comprar - {{ video.titulo_original }}</h1>
-    <td>
-        {% if video.trailer_url %}
-        <iframe width="560" height="315" src="{{ video.trailer_url }}" frameborder="0" allowfullscreen></iframe>
-        {% endif %}
+    <h1>{{ video.titulo_original }}</h1>
 
-    </td>
-    <p>Año: {{ video.ano }}</p>
-    <p>Duración: {{ video.duracion }} min</p>
-    <p>Calificación: {{ video.calificacion }}/10</p>
-    <p>Clasificación: {{ video.clasificacion }}</p>
-    <p>Precio de alquiler: {{ video.precio_alquiler }}</p>
-    <p>Precio de venta: {{ video.precio_venta }}</p>
+    <div class="main-container">
 
-    <form action="{% url 'agregar_al_carrito' video.id 'alquiler' %}" method="post"
-        style="display: inline-block; margin-right: 10px;">
-        {% csrf_token %}
-        <button type="submit" class="btn-alquilar">Alquilar</button>
-    </form>
+        <div class="video-container">
+            {% if video.trailer_url %}
+            <iframe src="{{ video.trailer_url }}" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
+        </div>
 
 
-    <form action="{% url 'agregar_al_carrito' video.id 'venta' %}" method="post" style="display: inline-block;">
-        {% csrf_token %}
-        <button type="submit" class="btn-comprar">Comprar</button>
-    </form>
+        <div class="details-container">
+            <p><strong>Año:</strong> {{ video.ano }}</p>
+            <p><strong>Duración:</strong> {{ video.duracion }} min</p>
+            <p><strong>Calificación:</strong> {{ video.calificacion }}/10</p>
+            <p><strong>Clasificación:</strong> {{ video.clasificacion }}</p>
+            <p><strong>Precio de alquiler:</strong> {{ video.precio_alquiler }}</p>
+            <p><strong>Precio de venta:</strong> {{ video.precio_venta }}</p>
+        </div>
+    </div>
 
+    <!-- Botones -->
+    <div class="buttons-container">
+        <form action="{% url 'agregar_al_carrito' video.id 'alquiler' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-alquilar">Alquilar</button>
+        </form>
+        <form action="{% url 'agregar_al_carrito' video.id 'venta' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-comprar">Comprar</button>
+        </form>
+    </div>
 
 </body>
+
 
 </html>

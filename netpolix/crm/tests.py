@@ -58,10 +58,6 @@ class PerfilModelTestCase(TestCase):
             fecha_ingreso="2024-01-01"
         )
         self.assertEqual(perfil_sin_puntos.puntos, 5)  # Valor por defecto debería ser 0
-=======
-from .forms import RegistroClienteForm
-from .models import Perfil
-from datetime import date
 
 class RegistroClienteFormTest(TestCase):
     def test_form_valido(self):
@@ -113,4 +109,4 @@ class RegistroClienteFormTest(TestCase):
         self.assertFalse(form.is_valid(), "El formulario debería ser inválido sin cédula")
         self.assertIn('cedula', form.errors, "El formulario debería tener un error en el campo cedula")
         print("Formulario inválido al faltar el campo cédula. Error en cedula detectado correctamente.")
->>>>>>> dfab6ad15c59aecc23737a68af52a4105c8f1456
+
