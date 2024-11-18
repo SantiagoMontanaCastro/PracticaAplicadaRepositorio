@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Video, Carrito 
+from .models import Video, Carrito,Purchase 
 from .models import AlquilerVenta
 from django.contrib import messages  
 from .forms import VideoSearchForm 
@@ -70,3 +70,15 @@ def ver_carrito(request):
 def logout_view(request):
     logout(request)
     return redirect('home')  # Cambia 'home' por la URL a la que desees redirigir después de cerrar sesión
+
+
+def watch_video(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    purchase = Purchase.objects.filter(user=request.user, video=video, payment_status='completado').first()
+
+    # Verifica si el usuario ha completado la compra para este video
+    if not purchase:
+        return redirect('checkout', video_id=video_id, purchase_type='venta')  # Redirige a pago si no ha comprado
+
+    # Carga la URL de la película completa si la compra está completada
+    return render(request, 'ver_completa.html', {'video': video, 'full_movie_url': video.full_movie_url})
