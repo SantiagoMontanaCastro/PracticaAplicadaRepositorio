@@ -34,19 +34,18 @@
             <p><strong>Clasificación:</strong> {{ video.clasificacion }}</p>
             <p><strong>Precio de alquiler:</strong> {{ video.precio_alquiler }}</p>
             <p><strong>Precio de venta:</strong> {{ video.precio_venta }}</p>
-        </div>
-    </div>
 
-    <!-- Botones -->
-    <div class="buttons-container">
-        <form action="{% url 'agregar_al_carrito' video.id 'alquiler' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn-alquilar">Alquilar</button>
-        </form>
-        <form action="{% url 'agregar_al_carrito' video.id 'venta' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn-comprar">Comprar</button>
-        </form>
+            <div class="buttons-container">
+                <form action="{% url 'agregar_al_carrito' video.id 'alquiler' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-alquilar">Alquilar</button>
+                </form>
+                <form action="{% url 'agregar_al_carrito' video.id 'venta' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-comprar">Comprar</button>
+                </form>
+            </div>
+        </div>
     </div>
 
 </body>

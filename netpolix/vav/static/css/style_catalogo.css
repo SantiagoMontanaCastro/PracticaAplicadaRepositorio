@@ -11,13 +11,17 @@ body {
 
 /* Header */
 .header {
-    background-color: #1E3E62;
-    padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #00000000;
+    margin-left: 250px;
+    margin-right: 250px;
 }
 
 .icono {
-    max-width: 150px;
+    max-width: 200px;
     height: auto;
 }
 
@@ -34,18 +38,14 @@ h1 {
     margin: 10px;
 }
 
-.logout-container a {
-    color: #FF6500;
-    text-decoration: none;
-    font-size: 14px;
-}
 
 /* Barra de búsqueda */
 .search-container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 10px;
-    margin: 20px;
+    margin-left: 75px;
+    margin-top: 50px;
 }
 
 .search-container input,
@@ -61,7 +61,7 @@ h1 {
 
 .search-container button {
     background-color: #FF6500;
-    color: #000000;
+    color: white;
     cursor: pointer;
 }
 
@@ -74,72 +74,42 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    padding: 20px;
+    padding: 75px;
 }
 
-/* Tarjeta de cada película */
 .tarjeta-pelicula {
-    background-color: #1E3E62;
+    position: relative;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    cursor: pointer;
 }
 
+/* Efectos al pasar el cursor */
 .tarjeta-pelicula:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
 }
 
+/* Imagen dentro de la tarjeta */
 .poster-container {
     width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
 .poster {
     width: 100%;
+
     height: auto;
+
     object-fit: cover;
-}
 
-/* Información de cada película */
-.info-pelicula {
-    padding: 15px;
-    text-align: center;
-}
-
-.info-pelicula h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #FF6500;
-}
-
-.info-pelicula span {
     display: block;
-    margin-bottom: 5px;
-    color: #e5e5e5;
 }
 
-.info-pelicula .action-btn {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #FF6500;
-    color: #000000;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.info-pelicula .action-btn:hover {
-    background-color: #e55300;
-}
-
-.info-pelicula .disabled {
-    background-color: #666;
-    color: #333;
-    cursor: not-allowed;
-}
 
 /* Media Queries */
 @media (max-width: 768px) {
@@ -152,4 +122,37 @@ h1 {
     .catalogo {
         grid-template-columns: 1fr;
     }
+}
+
+/* Botón de Logout */
+.logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    text-decoration: none;
+    color: #e5e5e5;
+    background: linear-gradient(45deg, #FF6500, #e55300);
+    border: none;
+    border-radius: 25px;
+    /* Bordes redondeados */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(45deg, #e55300, #FF6500);
+    /* Invertir colores */
+    transform: scale(1.1);
+    /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    /* Sombra más intensa */
+}
+
+.logout-btn:active {
+    transform: scale(0.95);
+    /* Pequeña contracción al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }

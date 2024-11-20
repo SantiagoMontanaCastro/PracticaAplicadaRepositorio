@@ -1,12 +1,10 @@
 # tests.py
+from datetime import date
 from django.test import TestCase
 from django.contrib.auth.models import User
-<<<<<<< HEAD
+
+from netpolix.crm.forms import RegistroClienteForm
 from .models import Perfil
-# Create your tests here.
-# crm/tests.py
-
-
 
 class PerfilModelTestCase(TestCase):
 

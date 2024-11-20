@@ -13,23 +13,19 @@
 
     <header class="header">
         <img src="{% static 'images/Logo_Netpolix.png' %}" alt="Icono de Netpolix" class="icono">
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-btn">Cerrar sesión</a>
+        {% endif %}
+
     </header>
 
     <h1>Catálogo de Videos</h1>
 
-    <div class="logout-container">
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Cerrar sesión</a>
-        {% endif %}
-    </div>
-
     <div class="search-container">
         <form method="GET">
-            <label for="titulo">Título:</label>
             <input type="text" name="titulo_original" placeholder="Buscar por título" />
-            <label for="ano">Año:</label>
             <input type="number" name="ano" placeholder="Año" />
-            <label for="idioma">Idioma:</label>
             <input type="text" name="idioma_original" placeholder="Idioma" />
             <button type="submit">Buscar</button>
         </form>
@@ -37,32 +33,25 @@
 
     <div class="catalogo">
         {% for video in videos %}
-        <div class="tarjeta-pelicula" data-pelicula-id="{{ video.id }}" data-url="{% url 'alquilar_venta' video.id %}">
+        <div class="tarjeta-pelicula" data-url="{% url 'alquilar_venta' video.id %}">
             <div class="poster-container">
                 {% if video.poster %}
-                <img src="{{ video.poster.url }}" alt="Portada de {{ video.titulo_original }}" class="poster">
+                <img src="{{ video.poster.url }}" alt="Portada de {{ video.titulo_original }}" class="poster" />
                 {% else %}
-                <img src="{% static 'images/default_image.png' %}" alt="Imagen por defecto" class="poster">
+                <img src="{% static 'images/default_image.png' %}" alt="Imagen por defecto" class="poster" />
                 {% endif %}
-            </div>
-            <div class="info-pelicula">
-                <h3>{{ video.titulo_original }}</h3>
-                <span>Año: {{ video.ano }}</span>
-                <span>Idioma: {{ video.idioma_original }}</span>
-                <span>Alquiler: ${{ video.precio_alquiler }}</span>
-                <span>Venta: ${{ video.precio_venta }}</span>
             </div>
         </div>
         {% endfor %}
     </div>
 
     <script>
-        document.querySelectorAll('.tarjeta-pelicula').forEach(tarjeta => {
-            tarjeta.addEventListener('click', function (e) {
 
-                let url = tarjeta.getAttribute('data-url');
+        document.querySelectorAll('.tarjeta-pelicula').forEach(tarjeta => {
+            tarjeta.addEventListener('click', function () {
+                const url = this.getAttribute('data-url');
                 if (url) {
-                    window.location.href = url;
+                    window.location.href = url; // Navega a la URL asociada a la tarjeta.
                 }
             });
         });
